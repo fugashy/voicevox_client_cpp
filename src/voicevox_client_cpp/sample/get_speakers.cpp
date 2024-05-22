@@ -8,14 +8,29 @@ void Callback()
   std::cout << "callback!" << std::endl;
 }
 
+using ReqBasePtr = voicevox_client_cpp::request::Base::SharedPtr;
+using ReqBuilder = voicevox_client_cpp::request::get::speakers::Builder;
+using Req = voicevox_client_cpp::request::get::speakers::Request;
+
 int main(int argc, char** argv)
 {
-  voicevox_client_cpp::request::Base::SharedPtr req(
-      new voicevox_client_cpp::request::get::speakers::Request(
+  // Create a request via normal interface
+   ReqBasePtr req_ptr(
+      new Req(
         "http://localhost:50021"));
 
+   // Create a request via builder interface
+   ReqBasePtr req_ptr2 = std::make_shared<Req>(
+       ReqBuilder()
+        .url("http://localhost:50021")
+        .core_version(std::nullopt)
+        .Get());
+
   voicevox_client_cpp::Client::GetInstance()
-    .Request(req.get(), std::bind(&Callback))
+    .Request(req_ptr.get(), std::bind(&Callback))
+      .wait();
+  voicevox_client_cpp::Client::GetInstance()
+    .Request(req_ptr2.get(), std::bind(&Callback))
       .wait();
 
   return EXIT_SUCCESS;

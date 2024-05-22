@@ -1,32 +1,34 @@
 #ifndef VOICEVOX_CLIENT_CPP_REQUEST_HPP_
 #define VOICEVOX_CLIENT_CPP_REQUEST_HPP_
-namespace voicevox_client_cpp
+#include <string>
+#include <memory>
+
+namespace voicevox_client_cpp::request
 {
 
-namespace request
+struct Base
 {
-
-class Base
-{
-public:
   using SharedPtr = std::shared_ptr<Base>;
 
+  Base() : url("")
+  {
+  }
+
   Base(const std::string& url)
-    : url_(url)
+    : url(url)
   {
   }
 
   virtual std::string GetUrl() const
   {
-    return url_;
+    return url;
   }
 
   virtual std::string GetMethod() const = 0;
 
-protected:
-  const std::string url_;
+  std::string url;
 };
 
-}  // namespace request
-}  // namespace voicevox_client_cpp
+
+}  // namespace voicevox_client_cpp::request
 #endif  // VOICEVOX_CLIENT_CPP_REQUEST_HPP_

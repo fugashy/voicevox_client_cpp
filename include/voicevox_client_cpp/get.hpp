@@ -6,16 +6,16 @@
 
 #include "voicevox_client_cpp/request.hpp"
 
-namespace voicevox_client_cpp
-{
-namespace request
-{
-namespace get
+namespace voicevox_client_cpp::request::get
 {
 
-class Base : public voicevox_client_cpp::request::Base
+struct Base : public voicevox_client_cpp::request::Base
 {
-public:
+  Base()
+    : voicevox_client_cpp::request::Base()
+  {
+  }
+
   Base(const std::string& url)
     : voicevox_client_cpp::request::Base(url)
   {
@@ -25,44 +25,71 @@ public:
   {
     return web::http::methods::GET;
   }
-
-protected:
 };
 
 namespace speakers
 {
 
-class Request final : public voicevox_client_cpp::request::get::Base
+struct Request final : public voicevox_client_cpp::request::get::Base
 {
-public:
+  Request()
+    : Base(),
+      core_version(std::nullopt)
+  {
+  }
+
   Request(
       const std::string& url,
       const std::optional<int> core_version = std::nullopt)
     : Base(url),
-      core_version_(core_version)
+      core_version(core_version)
   {
   }
 
   std::string GetUrl() const override
   {
     std::stringstream param;
-    if (core_version_ != std::nullopt)
+    if (this->core_version != std::nullopt)
     {
       param
-        << "?core_version=" << core_version_.value();
+        << "?core_version=" << this->core_version.value();
     }
 
-    return this->url_ + "/speakers" + param.str();
+    return this->url + "/speakers" + param.str();
+  }
+
+  std::optional<int> core_version;
+};
+
+class Builder final
+{
+public:
+  Builder() : req_()
+  {
+  }
+
+  Builder url(const std::string& url)
+  {
+    req_.url = url;
+    return *this;
+  }
+
+  Builder core_version(const std::optional<int>& core_version)
+  {
+    req_.core_version = core_version;
+    return *this;
+  }
+
+  Request Get() const
+  {
+    return req_;
   }
 
 private:
-  const std::optional<int> core_version_;
-
+  Request req_;
 };
 
 }  // namespace speakers
 
-}  // namespace request
-}  // namespace get
-}  // namespace voicevox_client_cpp
+}  // namespace voicevox_client_cpp::request::get
 #endif  // VOICEVOX_CLIENT_CPP_GET_HPP_
