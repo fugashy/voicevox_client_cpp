@@ -3,9 +3,11 @@
 
 #include <iostream>
 
-void Callback()
+void Callback(const web::json::value& json)
 {
-  std::cout << "callback!" << std::endl;
+  std::cout
+    << "callback!" << std::endl
+    << json << std::endl;
 }
 
 using ReqBasePtr = voicevox_client_cpp::request::Base::SharedPtr;
@@ -23,14 +25,14 @@ int main(int argc, char** argv)
    ReqBasePtr req_ptr2 = std::make_shared<Req>(
        ReqBuilder()
         .url("http://localhost:50021")
-        .core_version(std::nullopt)
         .Get());
 
+  // Get the same output by using both of two requests
   voicevox_client_cpp::Client::GetInstance()
-    .Request(req_ptr.get(), std::bind(&Callback))
+    .Request(req_ptr.get(), std::bind(&Callback, std::placeholders::_1))
       .wait();
   voicevox_client_cpp::Client::GetInstance()
-    .Request(req_ptr2.get(), std::bind(&Callback))
+    .Request(req_ptr2.get(), std::bind(&Callback, std::placeholders::_1))
       .wait();
 
   return EXIT_SUCCESS;

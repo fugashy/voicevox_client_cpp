@@ -28,10 +28,14 @@ pplx::task<void> Client::Request(const request::Base* req, const CallbackType ca
     .then(
         [callback](web::http::http_response response)
         {
-          std::cout
-            << "the response:" << std::endl
-            << response.extract_string().get().c_str() << std::endl;
-          callback();
+          if (response.status_code() != web::http::status_codes::OK)
+          {
+            std::cerr << "Unexpected status code" << std::endl;
+            callback(web::json::value());
+            return;
+          }
+          const web::json::value json = response.extract_json().get();
+          callback(json);
         });
 }
 
