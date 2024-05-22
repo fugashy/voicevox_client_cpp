@@ -30,21 +30,29 @@ install(
   INCLUDES DESTINATION include
 )
 
-add_executable(${PROJECT_NAME}_sample_get_speakers
-  src/${PROJECT_NAME}/sample/get_speakers.cpp
+# samples
+set(SAMPLE_NAMES
+  get_speakers
+  get_version
+  get_core_versions
 )
-target_link_libraries(${PROJECT_NAME}_sample_get_speakers
-  ${PROJECT_NAME}
-)
-install(
-  TARGETS
-    ${PROJECT_NAME}_sample_get_speakers
-  EXPORT ${PROJECT_NAME}
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-  INCLUDES DESTINATION include
-)
+foreach(sample_name IN LISTS SAMPLE_NAMES)
+  add_executable(${PROJECT_NAME}_sample_${sample_name}
+    src/${PROJECT_NAME}/sample/${sample_name}.cpp
+  )
+  target_link_libraries(${PROJECT_NAME}_sample_${sample_name}
+    ${PROJECT_NAME}
+  )
+  install(
+    TARGETS
+      ${PROJECT_NAME}_sample_${sample_name}
+    EXPORT ${PROJECT_NAME}
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES DESTINATION include
+  )
+endforeach()
 
 
 #
