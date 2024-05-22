@@ -9,8 +9,10 @@
 namespace voicevox_client_cpp
 {
 
-class Query;
-class Response;
+namespace request
+{
+class Base;
+}
 
 class Client
 {
@@ -23,7 +25,8 @@ public:
   static Client& GetInstance();
 
   // pplx::task<void> Request(const Query& query, const CallbackType user_callback);
-  pplx::task<void> Request(const CallbackType user_callback);
+  // pplx::task<void> Request(const CallbackType user_callback);
+  pplx::task<void> Request(const request::Base* req, const CallbackType user_callback);
 
 private:
   Client() = default;

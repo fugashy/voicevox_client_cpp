@@ -4,27 +4,11 @@
 
 #include <cpprest/http_client.h>
 
+#include "voicevox_client_cpp/request.hpp"
+
 
 namespace voicevox_client_cpp
 {
-
-class Query
-{
-  Query()
-  {
-    hoge_ = "hoge";
-  }
-
-private:
-  std::string hoge_;
-};
-
-class Response
-{
-public:
-  Response() = default;
-};
-
 
 Client& Client::GetInstance()
 {
@@ -33,13 +17,13 @@ Client& Client::GetInstance()
 }
 
 // pplx::task<void> Client::Request(const Query& query, const CallbackType callback)
-pplx::task<void> Client::Request(const CallbackType callback)
+pplx::task<void> Client::Request(const request::Base* req, const CallbackType callback)
 {
   return pplx::create_task(
-      []
+      [req]
       {
-        web::http::client::http_client client("http://localhost:50021/speakers");
-        return client.request(web::http::methods::GET);
+        web::http::client::http_client client(req->GetUrl());
+        return client.request(req->GetMethod());
       })
     .then(
         [callback](web::http::http_response response)

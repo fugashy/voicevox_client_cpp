@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(voicevox_client_cpp LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(cpprestsdk REQUIRED)
@@ -34,8 +34,8 @@ add_executable(${PROJECT_NAME}_sample_get_speakers
   src/${PROJECT_NAME}/sample/get_speakers.cpp
 )
 target_link_libraries(${PROJECT_NAME}_sample_get_speakers
-    ${PROJECT_NAME}
-  )
+  ${PROJECT_NAME}
+)
 install(
   TARGETS
     ${PROJECT_NAME}_sample_get_speakers
