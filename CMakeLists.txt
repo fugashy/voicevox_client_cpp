@@ -29,6 +29,24 @@ install(
   RUNTIME DESTINATION bin
   INCLUDES DESTINATION include
 )
+
+add_executable(${PROJECT_NAME}_sample_get_speakers
+  src/${PROJECT_NAME}/sample/get_speakers.cpp
+)
+target_link_libraries(${PROJECT_NAME}_sample_get_speakers
+    ${PROJECT_NAME}
+  )
+install(
+  TARGETS
+    ${PROJECT_NAME}_sample_get_speakers
+  EXPORT ${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+
+
 #
 # add_executable(${PROJECT_NAME}_use_simple_class
 #   src/${PROJECT_NAME}/use_simple_class.cpp

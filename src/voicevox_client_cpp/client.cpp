@@ -32,7 +32,8 @@ Client& Client::GetInstance()
   return instance;
 }
 
-pplx::task<void> Client::Request(const Query& query, const CallbackType callback)
+// pplx::task<void> Client::Request(const Query& query, const CallbackType callback)
+pplx::task<void> Client::Request(const CallbackType callback)
 {
   return pplx::create_task(
       []
@@ -43,8 +44,10 @@ pplx::task<void> Client::Request(const Query& query, const CallbackType callback
     .then(
         [callback](web::http::http_response response)
         {
-          Response res;
-          return callback(res);
+          std::cout
+            << "the response:" << std::endl
+            << response.extract_string().get().c_str() << std::endl;
+          callback();
         });
 }
 
