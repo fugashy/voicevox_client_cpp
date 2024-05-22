@@ -10,23 +10,26 @@ struct Base
 {
   using SharedPtr = std::shared_ptr<Base>;
 
-  Base() : url("")
+  Base() : ipaddr(""), port()
   {
   }
 
-  Base(const std::string& url)
-    : url(url)
+  Base(const std::string& _ipaddr, const int _port)
+    : ipaddr(_ipaddr), port(_port)
   {
   }
 
   virtual std::string GetUrl() const
   {
-    return url;
+    std::stringstream ss;
+    ss << "http://" << this->ipaddr << ":" << this->port;
+    return ss.str();
   }
 
   virtual std::string GetMethod() const = 0;
 
-  std::string url;
+  std::string ipaddr;
+  int port;
 };
 
 

@@ -16,8 +16,8 @@ struct Base : public voicevox_client_cpp::request::Base
   {
   }
 
-  Base(const std::string& url)
-    : voicevox_client_cpp::request::Base(url)
+  Base(const std::string& ipaddr, const int port)
+    : voicevox_client_cpp::request::Base(ipaddr, port)
   {
   }
 
@@ -39,10 +39,11 @@ struct Request final : public voicevox_client_cpp::request::get::Base
   }
 
   Request(
-      const std::string& url,
-      const std::optional<int> core_version = std::nullopt)
-    : Base(url),
-      core_version(core_version)
+      const std::string& ipaddr,
+      const int port,
+      const std::optional<int> _core_version = std::nullopt)
+    : Base(ipaddr, port),
+      core_version(_core_version)
   {
   }
 
@@ -55,7 +56,7 @@ struct Request final : public voicevox_client_cpp::request::get::Base
         << "?core_version=" << this->core_version.value();
     }
 
-    return this->url + "/speakers" + param.str();
+    return Base::GetUrl() + "/speakers" + param.str();
   }
 
   std::optional<int> core_version;
@@ -68,9 +69,15 @@ public:
   {
   }
 
-  Builder url(const std::string& url)
+  Builder ipaddr(const std::string& ipaddr)
   {
-    req_.url = url;
+    req_.ipaddr = ipaddr;
+    return *this;
+  }
+
+  Builder port(const int port)
+  {
+    req_.port = port;
     return *this;
   }
 

@@ -19,12 +19,14 @@ int main(int argc, char** argv)
   // Create a request via normal interface
    ReqBasePtr req_ptr(
       new Req(
-        "http://localhost:50021"));
+        "localhost",
+        50021));
 
    // Create a request via builder interface
    ReqBasePtr req_ptr2 = std::make_shared<Req>(
        ReqBuilder()
-        .url("http://localhost:50021")
+        .ipaddr("localhost")
+        .port(50021)
         .Get());
 
   // Get the same output by using both of two requests
