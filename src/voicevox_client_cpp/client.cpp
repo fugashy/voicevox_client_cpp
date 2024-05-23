@@ -10,29 +10,23 @@
 namespace voicevox_client_cpp
 {
 
-Client& Client::GetInstance()
+Client& Client::GetInstance(const std::string& uri)
 {
-  static Client instance;
+  static Client instance(uri);
   return instance;
 }
 
-// pplx::task<void> Client::Request(const Query& query, const CallbackType callback)
-pplx::task<void> Client::Request(const request::Base* req, const CallbackType callback)
+Client::Client(const std::string& uri)
+  : client_(new web::http::client::http_client(uri))
+{
+}
+
+pplx::task<void> Client::Request(const web::http::http_request& req, const CallbackType callback)
 {
   return pplx::create_task(
-      [req]
+      [this, req]
       {
-        web::http::client::http_client client(req->GetUrl());
-
-        if (req->GetMethod() == web::http::methods::GET)
-        {
-          return client.request(req->GetMethod());
-        }
-        if (req->GetBody().is_null())
-        {
-          return client.request(req->GetMethod());
-        }
-        return client.request(req->GetMethod(), "", req->GetBody().serialize());
+        return this->client_->request(req);
       })
     .then(
         [callback](web::http::http_response response)

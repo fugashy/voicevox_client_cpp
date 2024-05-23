@@ -3,39 +3,60 @@
 #include <string>
 #include <memory>
 
+#include <cpprest/http_msg.h>
 #include <cpprest/json.h>
 
 namespace voicevox_client_cpp::request
 {
 
-struct Base
+class Builder
 {
-  using SharedPtr = std::shared_ptr<Base>;
-
-  Base() : ipaddr(""), port()
+public:
+  Builder(const std::string& path)
+    : uri_builder_(path)
   {
   }
 
-  Base(const std::string& _ipaddr, const int _port)
-    : ipaddr(_ipaddr), port(_port)
+  web::http::http_request get()
   {
+    req_.set_request_uri(uri_builder_.to_uri());
+    return req_;
   }
 
-  virtual std::string GetUrl() const
+  Builder& method(const web::http::method& method)
   {
-    std::stringstream ss;
-    ss << "http://" << this->ipaddr << ":" << this->port;
-    return ss.str();
+    req_.set_method(method);
+    return *this;
   }
 
-  virtual std::string GetMethod() const = 0;
+  Builder& uri(const utility::string_t& uri)
+  {
+    req_.set_request_uri(uri);
+    return *this;
+  }
 
-  virtual web::json::value GetBody() const = 0;
+  Builder& header(const utility::string_t& key, const utility::string_t& value)
+  {
+    req_.headers().add(key, value);
+    return *this;
+  }
 
-  std::string ipaddr;
-  int port;
+  Builder& body(const utility::string_t& body)
+  {
+    req_.set_body(body);
+    return *this;
+  }
+
+  Builder& body(const web::json::value& body)
+  {
+    req_.set_body(body);
+    return *this;
+  }
+
+protected:
+  web::http::uri_builder uri_builder_;
+  web::http::http_request req_;
 };
-
 
 }  // namespace voicevox_client_cpp::request
 #endif  // VOICEVOX_CLIENT_CPP_REQUEST_HPP_

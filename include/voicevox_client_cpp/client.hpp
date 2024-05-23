@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <pplx/pplxtasks.h>
+#include <cpprest/http_msg.h>
 #include <cpprest/json.h>
 
 
@@ -23,17 +24,19 @@ public:
   Client(const Client&) = delete;
   Client& operator=(const Client&) = delete;
 
-  static Client& GetInstance();
+  static Client& GetInstance(const std::string& uri="");
 
   // pplx::task<void> Request(const Query& query, const CallbackType user_callback);
   // pplx::task<void> Request(const CallbackType user_callback);
   pplx::task<void> Request(
-      const request::Base* req,
+      const web::http::http_request& req,
       const CallbackType user_callback);
 
 private:
-  Client() = default;
+  Client(const std::string& uri);
   ~Client() = default;
+
+  std::unique_ptr<web::http::client::http_client> client_;
 };
 
 }  // namespace voicevox_client_cpp
