@@ -3,6 +3,8 @@
 #include <string>
 #include <memory>
 
+#include <cpprest/json.h>
+
 namespace voicevox_client_cpp::request
 {
 
@@ -27,6 +29,8 @@ struct Base
   }
 
   virtual std::string GetMethod() const = 0;
+
+  virtual web::json::value GetBody() const = 0;
 
   std::string ipaddr;
   int port;

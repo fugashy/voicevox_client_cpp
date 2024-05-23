@@ -23,7 +23,16 @@ pplx::task<void> Client::Request(const request::Base* req, const CallbackType ca
       [req]
       {
         web::http::client::http_client client(req->GetUrl());
-        return client.request(req->GetMethod());
+
+        if (req->GetMethod() == web::http::methods::GET)
+        {
+          return client.request(req->GetMethod());
+        }
+        if (req->GetBody().is_null())
+        {
+          return client.request(req->GetMethod());
+        }
+        return client.request(req->GetMethod(), "", req->GetBody().serialize());
       })
     .then(
         [callback](web::http::http_response response)

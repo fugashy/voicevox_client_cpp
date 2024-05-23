@@ -21,9 +21,15 @@ struct Base : public voicevox_client_cpp::request::Base
   {
   }
 
-  virtual std::string GetMethod() const
+  virtual std::string GetMethod() const final
   {
     return web::http::methods::GET;
+  }
+
+  virtual web::json::value GetBody() const final
+  {
+    // empty body
+    return web::json::value();
   }
 };
 

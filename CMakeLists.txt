@@ -35,6 +35,7 @@ set(SAMPLE_NAMES
   get_speakers
   get_version
   get_core_versions
+  post_audio_query_then_synthesis
 )
 foreach(sample_name IN LISTS SAMPLE_NAMES)
   add_executable(${PROJECT_NAME}_sample_${sample_name}
