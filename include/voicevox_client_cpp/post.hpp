@@ -17,15 +17,12 @@ class Builder final : public BaseBuilder
 public:
   Builder() : BaseBuilder("/audio_query")
   {
-    std::cout << "constructor" << std::endl;
     this->method(web::http::methods::POST);
-
-    std::cout << "0:" << this->req_.request_uri().path() << std::endl;
   }
 
   Builder& text(const utility::string_t& text)
   {
-    this->uri_builder_.append_query("text", this->Encode(text));
+    this->uri_builder_.append_query("text", text);
     return *this;
   }
 

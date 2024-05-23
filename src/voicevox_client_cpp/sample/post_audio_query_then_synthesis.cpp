@@ -29,10 +29,16 @@ void RequestSynthesis(const web::json::value& json)
 
 int main(int argc, char** argv)
 {
-   const web::http::http_request req = ReqAudioQueryBuilder()
-        .text("こんにちは")
-        .speaker(3)
-        .get();
+  std::string text = "こんにちは";
+  if (argc > 1)
+  {
+    text = argv[1];
+  }
+  std::cout << "input: " << text << std::endl;
+  const web::http::http_request req = ReqAudioQueryBuilder()
+       .text(text)
+       .speaker(3)
+       .get();
 
   voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
     .Request(req, std::bind(&RequestSynthesis, std::placeholders::_1))
