@@ -28,7 +28,7 @@ public:
 
   // pplx::task<void> Request(const Query& query, const CallbackType user_callback);
   // pplx::task<void> Request(const CallbackType user_callback);
-  pplx::task<void> Request(
+  void Request(
       const web::http::http_request& req,
       const CallbackType user_callback);
 

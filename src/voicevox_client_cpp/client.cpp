@@ -22,13 +22,9 @@ Client::Client(const std::string& uri)
 {
 }
 
-pplx::task<void> Client::Request(const web::http::http_request& req, const CallbackType callback)
+void Client::Request(const web::http::http_request& req, const CallbackType callback)
 {
-  return pplx::create_task(
-      [this, req]
-      {
-        return this->client_->request(req);
-      })
+  this->client_->request(req)
     .then(
         [callback](web::http::http_response res)
         {
@@ -49,11 +45,17 @@ pplx::task<void> Client::Request(const web::http::http_request& req, const Callb
           {
             auto file_buffer = Concurrency::streams::file_stream<uint8_t>::open_ostream(
                 U("/tmp/output.wav")).get();
-            res.body().read_to_end(file_buffer.streambuf()).then([file_buffer](size_t) {
-                file_buffer.close().then([] {
-                    std::cout << U("Audio file saved successfully.") << std::endl;
-                }).wait();
-            });
+            res.body().read_to_end(file_buffer.streambuf())
+              .then(
+                  [file_buffer](size_t)
+                  {
+                    file_buffer.close()
+                      .then(
+                          []
+                          {
+                            std::cout << U("Audio file saved successfully.") << std::endl;
+                          }).wait();
+            }).wait();
             callback(web::json::value());
           }
           else
@@ -61,7 +63,7 @@ pplx::task<void> Client::Request(const web::http::http_request& req, const Callb
             std::cerr << "Unknown content type: " << content_type << std::endl;
             callback(web::json::value());
           }
-        });
+        }).wait();
 }
 
 
