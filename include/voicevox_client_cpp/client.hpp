@@ -19,7 +19,11 @@ class Base;
 class Client
 {
 public:
-  using CallbackType = std::function<void(const web::json::value&)>;
+  using OptionalJson = std::optional<web::json::value>;
+  using OptionalString = std::optional<std::string>;
+
+  template<class T>
+  using CallbackType = std::function<void(const T&)>;
 
   Client(const Client&) = delete;
   Client& operator=(const Client&) = delete;
@@ -28,7 +32,10 @@ public:
 
   void Request(
       const web::http::http_request& req,
-      const CallbackType user_callback);
+      const CallbackType<OptionalJson> callback_json);
+  void Request(
+      const web::http::http_request& req,
+      const CallbackType<OptionalString> callback_audio);
 
 private:
   Client(const std::string& uri);

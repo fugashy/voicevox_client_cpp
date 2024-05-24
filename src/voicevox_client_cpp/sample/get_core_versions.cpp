@@ -3,14 +3,18 @@
 
 #include <iostream>
 
-void Callback(const web::json::value& json)
+using ReqBuilder = voicevox_client_cpp::request::get::core_versions::Builder;
+
+void Callback(const voicevox_client_cpp::Client::OptionalJson json)
 {
-  std::cout
-    << "callback!" << std::endl
-    << json << std::endl;
+  if (json == std::nullopt)
+  {
+    std::cerr << "Null results causes by invalid query may be" << std::endl;
+    return;
+  }
+  std::cout << json.value() << std::endl;
 }
 
-using ReqBuilder = voicevox_client_cpp::request::get::core_versions::Builder;
 
 int main(int argc, char** argv)
 {

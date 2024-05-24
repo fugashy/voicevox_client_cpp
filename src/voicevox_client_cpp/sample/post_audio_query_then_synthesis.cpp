@@ -6,21 +6,30 @@
 using ReqAudioQueryBuilder = voicevox_client_cpp::request::post::audio_query::Builder;
 using ReqSynthesisBuilder = voicevox_client_cpp::request::post::synthesis::Builder;
 
-void GetSynthesised(const web::json::value& json)
+void GetSynthesised(const voicevox_client_cpp::Client::OptionalString& string)
 {
-  std::cout
-    << "got synthesised json" << std::endl
-    << json << std::endl;
+  if (string == std::nullopt)
+  {
+    std::cerr << "Null results causes by invalid query may be" << std::endl;
+    return;
+  }
+  std::cout << "saved audio file path: " << string.value() << std::endl;
 }
 
 
-void RequestSynthesis(const web::json::value& json)
+void RequestSynthesis(const voicevox_client_cpp::Client::OptionalJson& json)
 {
-   const web::http::http_request req = ReqSynthesisBuilder()
-       .speaker(3)
-       .enable_interrogative_upspeak(false)
-       .accent_phrases(json)
-       .get();
+  if (json == std::nullopt)
+  {
+    std::cerr << "Null results causes by invalid query may be" << std::endl;
+    return;
+  }
+
+  const web::http::http_request req = ReqSynthesisBuilder()
+      .speaker(3)
+      .enable_interrogative_upspeak(false)
+      .accent_phrases(json.value())
+      .get();
 
   voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
   .Request(req, std::bind(&GetSynthesised, std::placeholders::_1));
