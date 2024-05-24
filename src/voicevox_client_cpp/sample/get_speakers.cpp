@@ -20,8 +20,10 @@ int main(int argc, char** argv)
 {
    const web::http::http_request req = ReqBuilder().get();
 
-  voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+  auto task = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
     .Request(req, std::bind(&Callback, std::placeholders::_1));
+
+  task.wait();
 
   return EXIT_SUCCESS;
 }

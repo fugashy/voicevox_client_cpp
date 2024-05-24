@@ -30,10 +30,10 @@ public:
 
   static Client& GetInstance(const std::string& uri);
 
-  void Request(
+  pplx::task<void> Request(
       const web::http::http_request& req,
       const CallbackType<OptionalJson> callback_json);
-  void Request(
+  pplx::task<void> Request(
       const web::http::http_request& req,
       const CallbackType<OptionalString> callback_audio);
 

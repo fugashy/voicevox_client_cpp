@@ -31,8 +31,10 @@ void RequestSynthesis(const voicevox_client_cpp::Client::OptionalJson& json)
       .accent_phrases(json.value())
       .get();
 
-  voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+  auto task = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
   .Request(req, std::bind(&GetSynthesised, std::placeholders::_1));
+
+  task.wait();
 }
 
 int main(int argc, char** argv)
@@ -48,8 +50,10 @@ int main(int argc, char** argv)
        .speaker(3)
        .get();
 
-  voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+  auto task = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
     .Request(req, std::bind(&RequestSynthesis, std::placeholders::_1));
+
+  task.wait();
 
   return EXIT_SUCCESS;
 }

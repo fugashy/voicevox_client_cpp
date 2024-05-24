@@ -22,11 +22,15 @@ Client::Client(const std::string& uri)
 {
 }
 
-void Client::Request(
+pplx::task<void> Client::Request(
     const web::http::http_request& req,
     const CallbackType<OptionalJson> callback)
 {
-  this->client_->request(req)
+  return pplx::create_task(
+      [this, req, callback]()
+      {
+        return this->client_->request(req);
+      })
     .then(
         [callback](const web::http::http_response& res)
         {
@@ -48,15 +52,19 @@ void Client::Request(
             std::cerr << "Unknown content type: " << content_type << std::endl;
             callback(web::json::value());
           }
-        }).wait();
+        });
 }
 
 
-void Client::Request(
+pplx::task<void> Client::Request(
     const web::http::http_request& req,
     const CallbackType<OptionalString> callback)
 {
-  this->client_->request(req)
+  return pplx::create_task(
+      [this, req, callback]()
+      {
+        return this->client_->request(req);
+      })
     .then(
         [callback](const web::http::http_response& res)
         {
@@ -91,7 +99,7 @@ void Client::Request(
             std::cerr << "Unknown content type: " << content_type << std::endl;
             callback(std::nullopt);
           }
-        }).wait();
+        });
 }
 
 

@@ -18,10 +18,17 @@ void Callback(const voicevox_client_cpp::Client::OptionalJson json)
 
 int main(int argc, char** argv)
 {
-   const web::http::http_request req = ReqBuilder().get();
+  // build request then get it.
+  const web::http::http_request req = ReqBuilder().get();
 
-  voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+  // request the get the handler.
+  auto task = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
     .Request(req, std::bind(&Callback, std::placeholders::_1));
+
+  // do some thing while a request is processed
+
+  // wait for the task completed
+  task.wait();
 
   return EXIT_SUCCESS;
 }
