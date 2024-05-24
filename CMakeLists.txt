@@ -55,6 +55,10 @@ foreach(sample_name IN LISTS SAMPLE_NAMES)
     RUNTIME DESTINATION bin
     INCLUDES DESTINATION include
   )
+  if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set_target_properties(${PROJECT_NAME}_sample_${sample_name}
+      PROPERTIES INSTALL_RPATH "@executable_path/../lib")
+  endif()
 endforeach()
 
 
