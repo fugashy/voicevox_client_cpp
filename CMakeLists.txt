@@ -60,29 +60,3 @@ foreach(sample_name IN LISTS SAMPLE_NAMES)
       PROPERTIES INSTALL_RPATH "@executable_path/../lib")
   endif()
 endforeach()
-
-
-#
-# add_executable(${PROJECT_NAME}_use_simple_class
-#   src/${PROJECT_NAME}/use_simple_class.cpp
-# )
-# target_link_libraries(${PROJECT_NAME}_use_simple_class
-#   ${CMAKE_DL_LIBS}
-# )
-# install(
-#   TARGETS
-#     ${PROJECT_NAME}_use_simple_class
-#   EXPORT ${PROJECT_NAME}
-#   ARCHIVE DESTINATION lib
-#   LIBRARY DESTINATION lib
-#   RUNTIME DESTINATION bin
-#   INCLUDES DESTINATION include
-# )
-# if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-#   set_target_properties(${PROJECT_NAME}_use_simple_class
-#     PROPERTIES INSTALL_RPATH "@executable_path/../lib")
-# endif()
-#
-# install(
-#   DIRECTORY include/
-#   DESTINATION include)
