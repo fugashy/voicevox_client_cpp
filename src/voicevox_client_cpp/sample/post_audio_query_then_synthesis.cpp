@@ -45,13 +45,25 @@ int main(int argc, char** argv)
     text = argv[1];
   }
   std::cout << "input: " << text << std::endl;
-  const web::http::http_request req = ReqAudioQueryBuilder()
+
+  const web::http::http_request req_audio_query = ReqAudioQueryBuilder()
        .text(text)
        .speaker(3)
        .get();
+  const auto json = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+    .Request<voicevox_client_cpp::Client::OptionalJson>(req_audio_query);
+
+  const web::http::http_request req_synthesis = ReqSynthesisBuilder()
+      .speaker(3)
+      .enable_interrogative_upspeak(false)
+      .accent_phrases(json.value())
+      .get();
+  const auto string = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+    .Request<voicevox_client_cpp::Client::OptionalString>(req_synthesis);
+  std::cout << "saved audio file path: " << string.value() << std::endl;
 
   auto task = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
-    .Request(req, std::bind(&RequestSynthesis, std::placeholders::_1));
+    .Request(req_audio_query, std::bind(&RequestSynthesis, std::placeholders::_1));
 
   task.wait();
 

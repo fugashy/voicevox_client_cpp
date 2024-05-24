@@ -37,6 +37,16 @@ public:
       const web::http::http_request& req,
       const CallbackType<OptionalString> callback_audio);
 
+  template<class T>
+  T Request(const web::http::http_request& req)
+  {
+    T out;
+    auto callback = [&out](const T& in) { out = in; };
+    auto task = Request(req, callback);
+    task.wait();
+    return out;
+  }
+
 private:
   Client(const std::string& uri);
   ~Client() = default;

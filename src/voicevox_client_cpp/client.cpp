@@ -55,7 +55,6 @@ pplx::task<void> Client::Request(
         });
 }
 
-
 pplx::task<void> Client::Request(
     const web::http::http_request& req,
     const CallbackType<OptionalString> callback)
@@ -101,6 +100,5 @@ pplx::task<void> Client::Request(
           }
         });
 }
-
 
 }  // namespace voicevox_client_cpp
