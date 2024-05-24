@@ -22,7 +22,7 @@ void RequestSynthesis(const web::json::value& json)
        .accent_phrases(json)
        .get();
 
-  voicevox_client_cpp::Client::GetInstance()
+  voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
   .Request(req, std::bind(&GetSynthesised, std::placeholders::_1));
 }
 

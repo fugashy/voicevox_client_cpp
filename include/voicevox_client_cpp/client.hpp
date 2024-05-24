@@ -24,10 +24,8 @@ public:
   Client(const Client&) = delete;
   Client& operator=(const Client&) = delete;
 
-  static Client& GetInstance(const std::string& uri="");
+  static Client& GetInstance(const std::string& uri);
 
-  // pplx::task<void> Request(const Query& query, const CallbackType user_callback);
-  // pplx::task<void> Request(const CallbackType user_callback);
   void Request(
       const web::http::http_request& req,
       const CallbackType user_callback);
