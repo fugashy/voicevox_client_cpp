@@ -101,4 +101,45 @@ pplx::task<void> Client::Request(
         });
 }
 
+extern "C"
+{
+/* get speakers */
+__attribute__((visibility("default")))
+Client* GetClientInstance(const char* uri)
+{
+  return &(Client::GetInstance(uri));
+}
+
+const char* RequestJsonString(
+    Client* client,
+    request::Builder* req_builder)
+{
+  Client::OptionalJson out = client->Request<Client::OptionalJson>(req_builder->get());
+  if (out == std::nullopt) return NULL;
+
+  const std::string str = out.value().as_string();
+  char* cstr = new char[str.size() + 1];
+  std::strcpy(cstr, str.c_str());
+  return cstr;
+}
+
+const char* RequestString(
+    Client* client,
+    request::Builder* req_builder)
+{
+  Client::OptionalString out = client->Request<Client::OptionalString>(req_builder->get());
+  if (out == std::nullopt) return NULL;
+
+  char* cstr = new char[out.value().size() + 1];
+  std::strcpy(cstr, out.value().c_str());
+  return cstr;
+}
+
+void FreeString(const char* str)
+{
+  delete[] str;
+}
+
+}  // extern "C"
+
 }  // namespace voicevox_client_cpp

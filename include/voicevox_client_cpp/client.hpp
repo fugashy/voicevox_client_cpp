@@ -13,7 +13,7 @@ namespace voicevox_client_cpp
 
 namespace request
 {
-class Base;
+class Builder;
 }
 
 class Client
@@ -53,6 +53,18 @@ private:
 
   std::unique_ptr<web::http::client::http_client> client_;
 };
+
+extern "C"
+{
+Client* GetClientInstance(const char* uri);
+const char* RequestJsonString(
+    Client* client,
+    request::Builder* req_builder);
+const char* RequestString(
+    Client* client,
+    request::Builder* req_builder);
+void FreeString(const char* str);
+}  // extern "C"
 
 }  // namespace voicevox_client_cpp
 #endif  // VOICEVOX_CLIENT_CPP_CLIEHT_HPP_
