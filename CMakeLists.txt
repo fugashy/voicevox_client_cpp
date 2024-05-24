@@ -60,3 +60,8 @@ foreach(sample_name IN LISTS SAMPLE_NAMES)
       PROPERTIES INSTALL_RPATH "@executable_path/../lib")
   endif()
 endforeach()
+
+if (TEST)
+  enable_testing()
+  add_subdirectory(test)
+endif()

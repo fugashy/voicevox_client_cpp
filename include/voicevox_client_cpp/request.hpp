@@ -12,6 +12,8 @@ namespace voicevox_client_cpp::request
 class Builder
 {
 public:
+  using SharedPtr = std::shared_ptr<Builder>;
+
   Builder(const std::string& path)
     : uri_builder_(path)
   {
