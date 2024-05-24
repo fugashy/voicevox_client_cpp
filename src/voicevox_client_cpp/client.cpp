@@ -26,7 +26,7 @@ void Client::Request(const web::http::http_request& req, const CallbackType call
 {
   this->client_->request(req)
     .then(
-        [callback](web::http::http_response res)
+        [callback](const web::http::http_response& res)
         {
           if (res.status_code() != web::http::status_codes::OK)
           {
