@@ -32,6 +32,16 @@ public:
   }
 };
 
+extern "C"
+{
+voicevox_client_cpp::request::get::speakers::Builder* CreateGetSpeakersRequestBuilder();
+void DestroyGetSpeakersRequestBuilder(
+    voicevox_client_cpp::request::get::speakers::Builder* builder);
+void SetGetSpeakersReequestCoreVersion(
+    voicevox_client_cpp::request::get::speakers::Builder* builder,
+    int core_version);
+}
+
 }  // namespace speakers
 
 namespace version
@@ -46,6 +56,13 @@ public:
   }
 };
 
+extern "C"
+{
+voicevox_client_cpp::request::get::version::Builder* CreateGetVersionRequestBuilder();
+void DestroyGetVersionRequestBuilder(
+    voicevox_client_cpp::request::get::version::Builder* builder);
+}
+
 }  // namespace version
 
 namespace core_versions
@@ -59,6 +76,14 @@ public:
     this->method(web::http::methods::GET);
   }
 };
+
+extern "C"
+{
+voicevox_client_cpp::request::get::core_versions::Builder* CreateGetCoreVersionsRequestBuilder();
+void DestroyGetCoreVersionsRequestBuilder(
+    voicevox_client_cpp::request::get::core_versions::Builder* builder);
+}
+
 
 }  // namespace core_versions
 

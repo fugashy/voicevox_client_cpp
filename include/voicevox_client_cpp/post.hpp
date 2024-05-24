@@ -40,30 +40,23 @@ public:
     }
     return *this;
   }
-
-private:
-  std::string Encode(const std::string& str) const
-  {
-    std::ostringstream encoded;
-    encoded << std::hex << std::uppercase;
-    for (char c : str)
-    {
-      if (isalnum(static_cast<unsigned char>(c)) || c == '-' || c == '_' || c == '.' || c == '~')
-      {
-        encoded << c;
-      }
-      else
-      {
-        encoded
-          << '%'
-          << std::setw(2)
-          << std::setfill('0')
-          << static_cast<int>(static_cast<unsigned char>(c));
-      }
-    }
-    return encoded.str();
-  }
 };
+
+extern "C"
+{
+voicevox_client_cpp::request::post::audio_query::Builder* CreatePostAudioQueryRequestBuilder();
+void DestroyPostAudioQueryRequestBuilder(
+    voicevox_client_cpp::request::post::audio_query::Builder* builder);
+void SetPostAudioQueryRequestText(
+    voicevox_client_cpp::request::post::audio_query::Builder* builder,
+    const char* text);
+void SetPostAudioQueryRequestSpeaker(
+    voicevox_client_cpp::request::post::audio_query::Builder* builder,
+    const int speaker);
+void SetPostAudioQueryRequestCoreVersion(
+    voicevox_client_cpp::request::post::audio_query::Builder* builder,
+    const int core_version);
+}
 
 }  // namespace audio_query
 
@@ -100,9 +93,15 @@ public:
     return *this;
   }
 
-  Builder& accent_phrases(const web::json::value& json)
+  Builder& accent_phrases(const web::json::value& accent_phrases)
   {
-    this->body(json);
+    this->body(accent_phrases);
+    return *this;
+  }
+
+  Builder& accent_phrases(const char* accent_phrases)
+  {
+    this->body(accent_phrases);
     return *this;
   }
 
@@ -110,17 +109,31 @@ public:
   {
     if (core_version != std::nullopt)
     {
-      const utility::string_t& uri = req_.request_uri().path();
-      std::stringstream ss;
-      ss << uri << "?core_version=" << core_version.value();
-      this->uri(ss.str());
+      this->uri_builder_.append_query("core_version", core_version.value());
     }
     return *this;
   }
 };
 
+extern "C"
+{
+voicevox_client_cpp::request::post::synthesis::Builder* CreatePostSynthesisRequestBuilder();
+void DestroyPostSynthesisRequestBuilder(
+    voicevox_client_cpp::request::post::synthesis::Builder* builder);
+void SetPostSynthesisRequestSpeaker(
+    voicevox_client_cpp::request::post::synthesis::Builder* builder,
+    const int speaker);
+void SetPostSynthesisRequestEnableInterrogativeUpspeak(
+    voicevox_client_cpp::request::post::synthesis::Builder* builder,
+    const bool enable_interrogative_upspeak);
+void SetPostSynthesisRequestAccentPhrases(
+    voicevox_client_cpp::request::post::synthesis::Builder* builder,
+    const char* accent_phrases);
+void SetPostSynthesisRequestCoreVersion(
+    voicevox_client_cpp::request::post::synthesis::Builder* builder,
+    const int core_version);
+}  // extern "C"
+
 }  // namespace synthesis
-
-
 }  // namespace voicevox_client_cpp::request::post
 #endif  // VOICEVOX_CLIENT_CPP_POST_HPP_
