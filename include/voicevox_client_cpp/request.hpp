@@ -14,12 +14,14 @@ class Builder
 public:
   using SharedPtr = std::shared_ptr<Builder>;
 
-  Builder(const std::string& path)
+  Builder(const std::string& path) noexcept(false)
     : uri_builder_(path)
   {
+    if (path.empty())
+      throw std::invalid_argument("Builder requires a value represents resource name");
   }
 
-  web::http::http_request get()
+  web::http::http_request get() noexcept
   {
     req_.set_request_uri(uri_builder_.to_uri());
     return req_;
@@ -28,12 +30,6 @@ public:
   Builder& method(const web::http::method& method)
   {
     req_.set_method(method);
-    return *this;
-  }
-
-  Builder& uri(const utility::string_t& uri)
-  {
-    req_.set_request_uri(uri);
     return *this;
   }
 
