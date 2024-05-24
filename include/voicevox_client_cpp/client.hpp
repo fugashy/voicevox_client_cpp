@@ -2,6 +2,7 @@
 #define VOICEVOX_CLIENT_CPP_CLIEHT_HPP_
 #include <functional>
 #include <memory>
+#include <optional>
 
 #include <pplx/pplxtasks.h>
 #include <cpprest/http_msg.h>
