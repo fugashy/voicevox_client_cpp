@@ -47,25 +47,27 @@ int main(int argc, char** argv)
   }
   std::cout << "input: " << text << std::endl;
 
-  // Build a request to create a speech query.
+  // Here's an example using a synchronous interface to obtain responses.
+  // It sends requests in the following order: speech query creation request,
+  // followed by a speech synthesis request.
+
+  // Build a request to create a speech query then send it's contents.
   const web::http::http_request req_audio_query = ReqAudioQueryBuilder()
        .text(text)
        .speaker(3)
        .get();
-  // Build a request for speech synthesis.
+  const auto json = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+    .Request<voicevox_client_cpp::Client::OptionalJson>(req_audio_query);
+
+  // Build a request for speech synthesis the send it's contents.
   const web::http::http_request req_synthesis = ReqSynthesisBuilder()
       .speaker(3)
       .enable_interrogative_upspeak(false)
       .accent_phrases(json.value())
       .get();
-
-  // Here's an example using a synchronous interface to obtain responses.
-  // It sends requests in the following order: speech query creation request,
-  // followed by a speech synthesis request.
-  const auto json = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
-    .Request<voicevox_client_cpp::Client::OptionalJson>(req_audio_query);
   const auto string = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
     .Request<voicevox_client_cpp::Client::OptionalString>(req_synthesis);
+
   std::cout << "saved audio file path: " << string.value() << std::endl;
 
   // Please refer to the file below for information on the interface for obtaining responses asynchronously.
