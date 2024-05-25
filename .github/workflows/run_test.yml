@@ -1,6 +1,9 @@
 name: Build sources the run tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -8,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up CMake
-      uses: actions/setup-cmake@v4
+      uses: actions/setup-cmake@v2
       with:
         cmake-version: '3.20'
 
