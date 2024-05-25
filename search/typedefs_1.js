@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['optionaljson_19',['OptionalJson',['../classvoicevox__client__cpp_1_1Client.html#ac5ae03b67775a4c1e2798a903173699a',1,'voicevox_client_cpp::Client']]],
-  ['optionalstring_20',['OptionalString',['../classvoicevox__client__cpp_1_1Client.html#a4f62510afa60bc26c233c1232fbfd756',1,'voicevox_client_cpp::Client']]]
+  ['callbacktype_122',['CallbackType',['../classvoicevox__client__cpp_1_1Client_a74d5a62e7bd08f115bf6d453cdb8d44a.html#a74d5a62e7bd08f115bf6d453cdb8d44a',1,'voicevox_client_cpp::Client']]]
 ];

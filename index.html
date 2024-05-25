@@ -64,13 +64,12 @@ $(function() {
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">voicevox_client_cpp </div>  </div>
+<div class="title"><a class="el" href="namespacevoicevox__client__cpp.html">voicevox_client_cpp</a> </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> <img src="https://github.com/fugashy/voicevox_client_cpp/actions/workflows/build_document.yml/badge.svg" alt="build-document" style="pointer-events: none;" class="inline"/> <img src="https://github.com/fugashy/voicevox_client_cpp/actions/workflows/run_test.yml/badge.svg" alt="run-tests" style="pointer-events: none;" class="inline"/></p>
 <p>A client library for VOICEVOX implemented in C++.</p>
-<p>It also provides an interface for calling from other languages. (Still under testing)</p>
-<p><em>Documentation containing additional information is under construction.</em></p>
+<p>It also provides an interface for calling from other languages. <em>Still under testing</em></p>
 <p><a href="https://fugashy.github.io/voicevox_client_cpp/index.html">Link to the Document</a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Required</h1>
@@ -79,8 +78,19 @@ Required</h1>
 <li>cpprestsdk</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
+Supported OS</h1>
+<ul>
+<li>Ubuntu 24.04</li>
+<li>masOS Sonoma 14.5</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
 How to build and install</h1>
-<div class="fragment"><div class="line">mkdir build</div>
+<div class="fragment"><div class="line"># for Ubuntu</div>
+<div class="line">sudo apt install libcpprest-dev</div>
+<div class="line"># for macOS</div>
+<div class="line">brew install cpprestsdk</div>
+<div class="line"> </div>
+<div class="line">mkdir build</div>
 <div class="line">cd build</div>
 <div class="line">cmake ..</div>
 <div class="line"> </div>
@@ -89,20 +99,20 @@ How to build and install</h1>
 <div class="line"> </div>
 <div class="line"># install</div>
 <div class="line">sudo make install</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
 How to build the docker image</h1>
 <div class="fragment"><div class="line">docker build -t vvccpp:latest .</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 A sample code for speech synthesis</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;voicevox_client_cpp/client.hpp&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;voicevox_client_cpp/post.hpp&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="client_8hpp.html">voicevox_client_cpp/client.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="post_8hpp.html">voicevox_client_cpp/post.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder.html">ReqAudioQueryBuilder</a> = <a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder.html">voicevox_client_cpp::request::post::audio_query::Builder</a>;</div>
 <div class="line"><span class="keyword">using</span> <a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder.html">ReqSynthesisBuilder</a> = <a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder.html">voicevox_client_cpp::request::post::synthesis::Builder</a>;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv)</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code" href="post__audio__query__then__synthesis_8cpp_a3c04138a5bfe5d72780bb7e82a18e627.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv)</div>
 <div class="line">{</div>
 <div class="line">  <span class="comment">// default text to synthesis</span></div>
 <div class="line">  std::string text = <span class="stringliteral">&quot;こんにちは&quot;</span>;</div>
@@ -117,21 +127,21 @@ A sample code for speech synthesis</h1>
 <div class="line">  <span class="comment">// followed by a speech synthesis request.</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Build a request to create a speech query then send it.</span></div>
-<div class="line">  <span class="keyword">const</span> web::http::http_request req_audio_query = <a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder.html">ReqAudioQueryBuilder</a>()</div>
-<div class="line">       .text(text)</div>
-<div class="line">       .speaker(3)</div>
-<div class="line">       .get();</div>
+<div class="line">  <span class="keyword">const</span> web::http::http_request req_audio_query = <a class="code" href="post__audio__query__then__synthesis_8cpp_a88fb993390a13c590fdbb2eafbf8e80c.html#a88fb993390a13c590fdbb2eafbf8e80c">ReqAudioQueryBuilder</a>()</div>
+<div class="line">       .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_af063b66796d32c40ea1f5c4f36b7574e.html#af063b66796d32c40ea1f5c4f36b7574e">text</a>(text)</div>
+<div class="line">       .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_a30cbfc905e65d3d9464cd5bb779ed597.html#a30cbfc905e65d3d9464cd5bb779ed597">speaker</a>(3)</div>
+<div class="line">       .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1Builder_a065871d65da176453036ee14623b4614.html#a065871d65da176453036ee14623b4614">get</a>();</div>
 <div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> json = <a class="code" href="classvoicevox__client__cpp_1_1Client_af386eb936e9a7c0fd576d52e5c8e9f0a.html#af386eb936e9a7c0fd576d52e5c8e9f0a">voicevox_client_cpp::Client::GetInstance</a>(<span class="stringliteral">&quot;http://localhost:50021&quot;</span>)</div>
-<div class="line">    .<a class="code" href="classvoicevox__client__cpp_1_1Client_a04669d8df0c0dd0de01254d40d0e9706.html#a04669d8df0c0dd0de01254d40d0e9706">Request</a>&lt;<a class="code" href="classvoicevox__client__cpp_1_1Client.html#ac5ae03b67775a4c1e2798a903173699a">voicevox_client_cpp::Client::OptionalJson</a>&gt;(req_audio_query);</div>
+<div class="line">    .<a class="code" href="classvoicevox__client__cpp_1_1Client_a04669d8df0c0dd0de01254d40d0e9706.html#a04669d8df0c0dd0de01254d40d0e9706">Request</a>&lt;<a class="code" href="classvoicevox__client__cpp_1_1Client_ac5ae03b67775a4c1e2798a903173699a.html#ac5ae03b67775a4c1e2798a903173699a">voicevox_client_cpp::Client::OptionalJson</a>&gt;(req_audio_query);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Build a request for speech synthesis then send it.</span></div>
-<div class="line">  <span class="keyword">const</span> web::http::http_request req_synthesis = <a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder.html">ReqSynthesisBuilder</a>()</div>
-<div class="line">      .speaker(3)</div>
-<div class="line">      .enable_interrogative_upspeak(<span class="keyword">false</span>)</div>
-<div class="line">      .accent_phrases(json.value())</div>
-<div class="line">      .get();</div>
+<div class="line">  <span class="keyword">const</span> web::http::http_request req_synthesis = <a class="code" href="post__audio__query__then__synthesis_8cpp_a083dfda251323bcf921c6f076fc7f394.html#a083dfda251323bcf921c6f076fc7f394">ReqSynthesisBuilder</a>()</div>
+<div class="line">      .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_a46f4894e2186ce45ed62545b841b95eb.html#a46f4894e2186ce45ed62545b841b95eb">speaker</a>(3)</div>
+<div class="line">      .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_aab39ef16d593fe74c7ecce8cf832863b.html#aab39ef16d593fe74c7ecce8cf832863b">enable_interrogative_upspeak</a>(<span class="keyword">false</span>)</div>
+<div class="line">      .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_a5db2d3348c64dd453984acd52222f0e3.html#a5db2d3348c64dd453984acd52222f0e3">accent_phrases</a>(json.value())</div>
+<div class="line">      .<a class="code" href="classvoicevox__client__cpp_1_1request_1_1Builder_a065871d65da176453036ee14623b4614.html#a065871d65da176453036ee14623b4614">get</a>();</div>
 <div class="line">  <span class="keyword">const</span> <span class="keyword">auto</span> <span class="keywordtype">string</span> = <a class="code" href="classvoicevox__client__cpp_1_1Client_af386eb936e9a7c0fd576d52e5c8e9f0a.html#af386eb936e9a7c0fd576d52e5c8e9f0a">voicevox_client_cpp::Client::GetInstance</a>(<span class="stringliteral">&quot;http://localhost:50021&quot;</span>)</div>
-<div class="line">    .<a class="code" href="classvoicevox__client__cpp_1_1Client_a04669d8df0c0dd0de01254d40d0e9706.html#a04669d8df0c0dd0de01254d40d0e9706">Request</a>&lt;<a class="code" href="classvoicevox__client__cpp_1_1Client.html#a4f62510afa60bc26c233c1232fbfd756">voicevox_client_cpp::Client::OptionalString</a>&gt;(req_synthesis);</div>
+<div class="line">    .<a class="code" href="classvoicevox__client__cpp_1_1Client_a04669d8df0c0dd0de01254d40d0e9706.html#a04669d8df0c0dd0de01254d40d0e9706">Request</a>&lt;<a class="code" href="classvoicevox__client__cpp_1_1Client_a4f62510afa60bc26c233c1232fbfd756.html#a4f62510afa60bc26c233c1232fbfd756">voicevox_client_cpp::Client::OptionalString</a>&gt;(req_synthesis);</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;saved audio file path: &quot;</span> &lt;&lt; <span class="keywordtype">string</span>.value() &lt;&lt; std::endl;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Please refer to the file below for information on the interface for obtaining responses asynchronously.</span></div>
@@ -140,11 +150,22 @@ A sample code for speech synthesis</h1>
 <div class="line">  <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassvoicevox__client__cpp_1_1Client_a04669d8df0c0dd0de01254d40d0e9706_html_a04669d8df0c0dd0de01254d40d0e9706"><div class="ttname"><a href="classvoicevox__client__cpp_1_1Client_a04669d8df0c0dd0de01254d40d0e9706.html#a04669d8df0c0dd0de01254d40d0e9706">voicevox_client_cpp::Client::Request</a></div><div class="ttdeci">pplx::task&lt; void &gt; Request(const web::http::http_request &amp;req, const CallbackType&lt; OptionalJson &gt; callback_json)</div><div class="ttdoc">An interface for sending supplies to the server and receiving responses asynchronously.</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1Client_a4f62510afa60bc26c233c1232fbfd756_html_a4f62510afa60bc26c233c1232fbfd756"><div class="ttname"><a href="classvoicevox__client__cpp_1_1Client_a4f62510afa60bc26c233c1232fbfd756.html#a4f62510afa60bc26c233c1232fbfd756">voicevox_client_cpp::Client::OptionalString</a></div><div class="ttdeci">std::optional&lt; std::string &gt; OptionalString</div><div class="ttdoc">Responses from the client (in String format)</div><div class="ttdef"><b>Definition:</b> client.hpp:34</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1Client_ac5ae03b67775a4c1e2798a903173699a_html_ac5ae03b67775a4c1e2798a903173699a"><div class="ttname"><a href="classvoicevox__client__cpp_1_1Client_ac5ae03b67775a4c1e2798a903173699a.html#ac5ae03b67775a4c1e2798a903173699a">voicevox_client_cpp::Client::OptionalJson</a></div><div class="ttdeci">std::optional&lt; web::json::value &gt; OptionalJson</div><div class="ttdoc">Responses from the client (in JSON format).</div><div class="ttdef"><b>Definition:</b> client.hpp:29</div></div>
 <div class="ttc" id="aclassvoicevox__client__cpp_1_1Client_af386eb936e9a7c0fd576d52e5c8e9f0a_html_af386eb936e9a7c0fd576d52e5c8e9f0a"><div class="ttname"><a href="classvoicevox__client__cpp_1_1Client_af386eb936e9a7c0fd576d52e5c8e9f0a.html#af386eb936e9a7c0fd576d52e5c8e9f0a">voicevox_client_cpp::Client::GetInstance</a></div><div class="ttdeci">static Client &amp; GetInstance(const std::string &amp;uri)</div><div class="ttdoc">The only interface for obtaining the client.</div></div>
-<div class="ttc" id="aclassvoicevox__client__cpp_1_1Client_html_a4f62510afa60bc26c233c1232fbfd756"><div class="ttname"><a href="classvoicevox__client__cpp_1_1Client.html#a4f62510afa60bc26c233c1232fbfd756">voicevox_client_cpp::Client::OptionalString</a></div><div class="ttdeci">std::optional&lt; std::string &gt; OptionalString</div><div class="ttdoc">Responses from the client (in String format)</div><div class="ttdef"><b>Definition:</b> client.hpp:34</div></div>
-<div class="ttc" id="aclassvoicevox__client__cpp_1_1Client_html_ac5ae03b67775a4c1e2798a903173699a"><div class="ttname"><a href="classvoicevox__client__cpp_1_1Client.html#ac5ae03b67775a4c1e2798a903173699a">voicevox_client_cpp::Client::OptionalJson</a></div><div class="ttdeci">std::optional&lt; web::json::value &gt; OptionalJson</div><div class="ttdoc">Responses from the client (in JSON format).</div><div class="ttdef"><b>Definition:</b> client.hpp:29</div></div>
-<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_html"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder.html">voicevox_client_cpp::request::post::audio_query::Builder</a></div><div class="ttdef"><b>Definition:</b> post.hpp:16</div></div>
-<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_html"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder.html">voicevox_client_cpp::request::post::synthesis::Builder</a></div><div class="ttdef"><b>Definition:</b> post.hpp:67</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1Builder_a065871d65da176453036ee14623b4614_html_a065871d65da176453036ee14623b4614"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1Builder_a065871d65da176453036ee14623b4614.html#a065871d65da176453036ee14623b4614">voicevox_client_cpp::request::Builder::get</a></div><div class="ttdeci">web::http::http_request get() noexcept</div><div class="ttdoc">Create and provide a request based on the settings provided so far.</div><div class="ttdef"><b>Definition:</b> request.hpp:42</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_a30cbfc905e65d3d9464cd5bb779ed597_html_a30cbfc905e65d3d9464cd5bb779ed597"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_a30cbfc905e65d3d9464cd5bb779ed597.html#a30cbfc905e65d3d9464cd5bb779ed597">voicevox_client_cpp::request::post::audio_query::Builder::speaker</a></div><div class="ttdeci">Builder &amp; speaker(const int speaker)</div><div class="ttdoc">Set the speaker ID to be used for the query to synthesize Japanese speech.</div><div class="ttdef"><b>Definition:</b> post.hpp:52</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_af063b66796d32c40ea1f5c4f36b7574e_html_af063b66796d32c40ea1f5c4f36b7574e"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_af063b66796d32c40ea1f5c4f36b7574e.html#af063b66796d32c40ea1f5c4f36b7574e">voicevox_client_cpp::request::post::audio_query::Builder::text</a></div><div class="ttdeci">Builder &amp; text(const utility::string_t &amp;text)</div><div class="ttdoc">Set the text to be used for the query to synthesize Japanese speech.</div><div class="ttdef"><b>Definition:</b> post.hpp:39</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder_html"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder.html">voicevox_client_cpp::request::post::audio_query::Builder</a></div><div class="ttdoc">A builder for creating requests to obtain audio_query.</div><div class="ttdef"><b>Definition:</b> post.hpp:22</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_a46f4894e2186ce45ed62545b841b95eb_html_a46f4894e2186ce45ed62545b841b95eb"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_a46f4894e2186ce45ed62545b841b95eb.html#a46f4894e2186ce45ed62545b841b95eb">voicevox_client_cpp::request::post::synthesis::Builder::speaker</a></div><div class="ttdeci">Builder &amp; speaker(const int speaker)</div><div class="ttdoc">Set the speaker ID to be used for the query to synthesize Japanese speech.</div><div class="ttdef"><b>Definition:</b> post.hpp:152</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_a5db2d3348c64dd453984acd52222f0e3_html_a5db2d3348c64dd453984acd52222f0e3"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_a5db2d3348c64dd453984acd52222f0e3.html#a5db2d3348c64dd453984acd52222f0e3">voicevox_client_cpp::request::post::synthesis::Builder::accent_phrases</a></div><div class="ttdeci">Builder &amp; accent_phrases(const web::json::value &amp;accent_phrases)</div><div class="ttdoc">Set the query for speech synthesis included in the response body of the audio_query request.</div><div class="ttdef"><b>Definition:</b> post.hpp:185</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_aab39ef16d593fe74c7ecce8cf832863b_html_aab39ef16d593fe74c7ecce8cf832863b"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_aab39ef16d593fe74c7ecce8cf832863b.html#aab39ef16d593fe74c7ecce8cf832863b">voicevox_client_cpp::request::post::synthesis::Builder::enable_interrogative_upspeak</a></div><div class="ttdeci">Builder &amp; enable_interrogative_upspeak(const bool enable_interrogative_upspeak)</div><div class="ttdoc">Set a flag to control whether to raise the intonation at the end when it's a question.</div><div class="ttdef"><b>Definition:</b> post.hpp:165</div></div>
+<div class="ttc" id="aclassvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder_html"><div class="ttname"><a href="classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder.html">voicevox_client_cpp::request::post::synthesis::Builder</a></div><div class="ttdoc">A builder for creating requests to obtain audio_query.</div><div class="ttdef"><b>Definition:</b> post.hpp:132</div></div>
+<div class="ttc" id="aclient_8hpp_html"><div class="ttname"><a href="client_8hpp.html">client.hpp</a></div></div>
+<div class="ttc" id="apost_8hpp_html"><div class="ttname"><a href="post_8hpp.html">post.hpp</a></div></div>
+<div class="ttc" id="apost__audio__query__then__synthesis_8cpp_a083dfda251323bcf921c6f076fc7f394_html_a083dfda251323bcf921c6f076fc7f394"><div class="ttname"><a href="post__audio__query__then__synthesis_8cpp_a083dfda251323bcf921c6f076fc7f394.html#a083dfda251323bcf921c6f076fc7f394">ReqSynthesisBuilder</a></div><div class="ttdeci">voicevox_client_cpp::request::post::synthesis::Builder ReqSynthesisBuilder</div><div class="ttdef"><b>Definition:</b> post_audio_query_then_synthesis.cpp:7</div></div>
+<div class="ttc" id="apost__audio__query__then__synthesis_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="post__audio__query__then__synthesis_8cpp_a3c04138a5bfe5d72780bb7e82a18e627.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> post_audio_query_then_synthesis.cpp:40</div></div>
+<div class="ttc" id="apost__audio__query__then__synthesis_8cpp_a88fb993390a13c590fdbb2eafbf8e80c_html_a88fb993390a13c590fdbb2eafbf8e80c"><div class="ttname"><a href="post__audio__query__then__synthesis_8cpp_a88fb993390a13c590fdbb2eafbf8e80c.html#a88fb993390a13c590fdbb2eafbf8e80c">ReqAudioQueryBuilder</a></div><div class="ttdeci">voicevox_client_cpp::request::post::audio_query::Builder ReqAudioQueryBuilder</div><div class="ttdef"><b>Definition:</b> post_audio_query_then_synthesis.cpp:6</div></div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

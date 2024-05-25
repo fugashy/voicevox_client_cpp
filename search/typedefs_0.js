@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['callbacktype_18',['CallbackType',['../classvoicevox__client__cpp_1_1Client_a74d5a62e7bd08f115bf6d453cdb8d44a.html#a74d5a62e7bd08f115bf6d453cdb8d44a',1,'voicevox_client_cpp::Client']]]
+  ['basebuilder_121',['BaseBuilder',['../get_8hpp_a55c52134f64ebd09cc23978fd5b84f13.html#a55c52134f64ebd09cc23978fd5b84f13',1,'BaseBuilder():&#160;get.hpp'],['../post_8hpp_a55c52134f64ebd09cc23978fd5b84f13.html#a55c52134f64ebd09cc23978fd5b84f13',1,'BaseBuilder():&#160;post.hpp']]]
 ];

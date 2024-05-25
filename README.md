@@ -5,9 +5,7 @@
 
 A client library for VOICEVOX implemented in C++.
 
-It also provides an interface for calling from other languages. (Still under testing)
-
-*Documentation containing additional information is under construction.*
+It also provides an interface for calling from other languages. *Still under testing*
 
 [Link to the Document](https://fugashy.github.io/voicevox_client_cpp/index.html)
 
@@ -16,9 +14,19 @@ It also provides an interface for calling from other languages. (Still under tes
 - C++ 17
 - cpprestsdk
 
+# Supported OS
+
+- Ubuntu 24.04
+- masOS Sonoma 14.5
+
 # How to build and install
 
 ```bash
+# for Ubuntu
+sudo apt install libcpprest-dev
+# for macOS
+brew install cpprestsdk
+
 mkdir build
 cd build
 cmake ..

@@ -3,7 +3,7 @@ digraph "voicevox_client_cpp::request::get::core_versions::Builder"
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="voicevox_client_cpp\l::request::get::core\l_versions::Builder",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="voicevox_client_cpp\l::request::get::core\l_versions::Builder",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A builder for creating requests to obtain core_version."];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="BaseBuilder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classvoicevox__client__cpp_1_1request_1_1Builder.html",tooltip=" "];
+  Node2 [label="BaseBuilder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classvoicevox__client__cpp_1_1request_1_1Builder.html",tooltip="A base class for a group of builder classes."];
 }
