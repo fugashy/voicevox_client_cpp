@@ -16,9 +16,19 @@ It also provides an interface for calling from other languages. (Still under tes
 - C++ 17
 - cpprestsdk
 
+# Supported OS
+
+- Ubuntu 24.04
+- masOS Sonoma 14.5
+
 # How to build and install
 
 ```bash
+# for Ubuntu
+sudo apt install libcpprest-dev
+# for macOS
+brew install cpprestsdk
+
 mkdir build
 cd build
 cmake ..
