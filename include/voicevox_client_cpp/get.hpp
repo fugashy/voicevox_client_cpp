@@ -66,10 +66,10 @@ void DestroyGetSpeakersRequestBuilder(
     voicevox_client_cpp::request::get::speakers::Builder* builder);
 
 /**
- * @brief 
+ * @brief Set cove_version value to request
  *
- * @param builder
- * @param core_version
+ * @param builder A builder of the request
+ * @param core_version A value of core_version
  */
 void SetGetSpeakersReequestCoreVersion(
     voicevox_client_cpp::request::get::speakers::Builder* builder,
@@ -81,9 +81,15 @@ void SetGetSpeakersReequestCoreVersion(
 namespace version
 {
 
+/**
+ * @brief A builder for creating requests to obtain version.
+ */
 class Builder final : public BaseBuilder
 {
 public:
+  /**
+   * @brief Initialize base URI
+   */
   Builder() : BaseBuilder("/version")
   {
     this->method(web::http::methods::GET);
@@ -92,7 +98,18 @@ public:
 
 extern "C"
 {
+/**
+ * @brief Get a pointer to the builder for creating a request to obtain version.
+ *
+ * @return A pointer to the builder
+ */
 voicevox_client_cpp::request::get::version::Builder* CreateGetVersionRequestBuilder();
+
+/**
+ * @brief Delete the builder for getting speakers.
+ *
+ * @param builder A pointer to the builder
+ */
 void DestroyGetVersionRequestBuilder(
     voicevox_client_cpp::request::get::version::Builder* builder);
 }
@@ -102,9 +119,15 @@ void DestroyGetVersionRequestBuilder(
 namespace core_versions
 {
 
+/**
+ * @brief A builder for creating requests to obtain core_version.
+ */
 class Builder final : public BaseBuilder
 {
 public:
+  /**
+   * @brief Initialize base URI
+   */
   Builder() : BaseBuilder("/core_versions")
   {
     this->method(web::http::methods::GET);
@@ -113,7 +136,18 @@ public:
 
 extern "C"
 {
+/**
+ * @brief Get a pointer to the builder for creating a request to obtain core_version.
+ *
+ * @return A pointer to the builder
+ */
 voicevox_client_cpp::request::get::core_versions::Builder* CreateGetCoreVersionsRequestBuilder();
+
+/**
+ * @brief Delete the builder for getting core_versions.
+ *
+ * @param builder A pointer to the builder
+ */
 void DestroyGetCoreVersionsRequestBuilder(
     voicevox_client_cpp::request::get::core_versions::Builder* builder);
 }
