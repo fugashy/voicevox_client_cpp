@@ -18,6 +18,9 @@ jobs:
       with:
         cmake-version: '3.20'
 
+    - name: Install cpprestsdk
+      run: sudo apt-get update && sudo apt-get install -y libcpprest-dev
+
     - name: Configure CMake
       run: cmake -B build
 
