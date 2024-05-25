@@ -78,3 +78,5 @@ int main(int argc, char** argv)
   return EXIT_SUCCESS;
 }
 ```
+
+*Documentation containing additional information is under construction.*
