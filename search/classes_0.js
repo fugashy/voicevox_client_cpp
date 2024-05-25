@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['builder_10',['Builder',['../classvoicevox__client__cpp_1_1request_1_1Builder.html',1,'voicevox_client_cpp::request::Builder'],['../classvoicevox__client__cpp_1_1request_1_1get_1_1core__versions_1_1Builder.html',1,'voicevox_client_cpp::request::get::core_versions::Builder'],['../classvoicevox__client__cpp_1_1request_1_1get_1_1speakers_1_1Builder.html',1,'voicevox_client_cpp::request::get::speakers::Builder'],['../classvoicevox__client__cpp_1_1request_1_1get_1_1version_1_1Builder.html',1,'voicevox_client_cpp::request::get::version::Builder'],['../classvoicevox__client__cpp_1_1request_1_1post_1_1audio__query_1_1Builder.html',1,'voicevox_client_cpp::request::post::audio_query::Builder'],['../classvoicevox__client__cpp_1_1request_1_1post_1_1synthesis_1_1Builder.html',1,'voicevox_client_cpp::request::post::synthesis::Builder']]]
+];

@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="voicevox_client_cpp\l::Client",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classvoicevox__client__cpp_1_1Client.html",tooltip="A client class for handlingk requests and responses to/from VOICEVOX."];
+}
