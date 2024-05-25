@@ -129,13 +129,48 @@ private:
 
 extern "C"
 {
+/**
+ * @brief [extern "C"] Get instance of the client
+ *
+ * @param uri The URI of the server
+ *
+ * @return A pointer of the client
+ */
 Client* GetClientInstance(const char* uri);
+
+/**
+ * @brief An interface for sending requests to the server and receiving responses synchronously.
+ *
+ * Response type: JSON string
+ *
+ * @param client A pointer of the client
+ * @param req_builder A builder object of the request for the server
+ *
+ * @return JSON string
+ */
 const char* RequestJsonString(
     Client* client,
     request::Builder* req_builder);
+
+/**
+ * @brief An interface for sending requests to the server and receiving responses synchronously.
+ *
+ * Response type: String
+ *
+ * @param client A pointer of the client
+ * @param req_builder A builder object of the request for the server
+ *
+ * @return String
+ */
 const char* RequestString(
     Client* client,
     request::Builder* req_builder);
+
+/**
+ * @brief Free memories of string object
+ *
+ * @param str The target string object
+ */
 void FreeString(const char* str);
 }  // extern "C"
 
