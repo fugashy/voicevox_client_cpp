@@ -3,7 +3,7 @@ name: Build sources the run tests
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   build:

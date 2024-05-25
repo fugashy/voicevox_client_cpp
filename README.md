@@ -1,6 +1,7 @@
 # voicevox_client_cpp
 
 ![build-document](https://github.com/fugashy/voicevox_client_cpp/actions/workflows/build_document.yml/badge.svg)
+![run-tests](https://github.com/fugashy/voicevox_client_cpp/actions/workflows/run_test.yml/badge.svg)
 
 A client library for VOICEVOX implemented in C++.
 
