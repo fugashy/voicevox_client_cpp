@@ -5,9 +5,7 @@
 
 A client library for VOICEVOX implemented in C++.
 
-It also provides an interface for calling from other languages. (Still under testing)
-
-*Documentation containing additional information is under construction.*
+It also provides an interface for calling from other languages. *Still under testing*
 
 [Link to the Document](https://fugashy.github.io/voicevox_client_cpp/index.html)
 
