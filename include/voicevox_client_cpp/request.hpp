@@ -101,7 +101,14 @@ public:
   }
 
 protected:
+  /**
+   * @brief URI builder
+   */
   web::http::uri_builder uri_builder_;
+
+  /**
+   * @brief The request object to be built
+   */
   web::http::http_request req_;
 };
 

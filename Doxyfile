@@ -56,3 +56,4 @@ EXAMPLE_RECURSIVE      = NO
 IMAGE_PATH             =
 RECURSIVE              = YES
 HTML_EXTRA_FILES = ./README.md ./src/voicevox_client_cpp/sample/post_audio_query_then_synthesis.cpp
+EXTRACT_ALL            = YES
