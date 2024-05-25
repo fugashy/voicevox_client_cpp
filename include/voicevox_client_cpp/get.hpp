@@ -6,6 +6,9 @@
 
 #include "voicevox_client_cpp/request.hpp"
 
+/**
+ * @brief An alias for the base builder.
+ */
 using BaseBuilder = voicevox_client_cpp::request::Builder;
 
 namespace voicevox_client_cpp::request::get
@@ -14,14 +17,27 @@ namespace voicevox_client_cpp::request::get
 namespace speakers
 {
 
+/**
+ * @brief A builder for creating requests to obtain speakers.
+ */
 class Builder final : public BaseBuilder
 {
 public:
+  /**
+   * @brief Initialize base URI
+   */
   Builder() : BaseBuilder("/speakers")
   {
     this->method(web::http::methods::GET);
   }
 
+  /**
+   * @brief Set core_version to the request
+   *
+   * @param core_version core_version of the engine.
+   *
+   * @return This builder
+   */
   Builder& core_version(const std::optional<int>& core_version)
   {
     if (core_version != std::nullopt)
@@ -34,9 +50,27 @@ public:
 
 extern "C"
 {
+/**
+ * @brief Get a pointer to the builder for creating a request to obtain speakers.
+ *
+ * @return A pointer to the builder
+ */
 voicevox_client_cpp::request::get::speakers::Builder* CreateGetSpeakersRequestBuilder();
+
+/**
+ * @brief Delete the builder for getting speakers.
+ *
+ * @param builder A pointer to the builder
+ */
 void DestroyGetSpeakersRequestBuilder(
     voicevox_client_cpp::request::get::speakers::Builder* builder);
+
+/**
+ * @brief 
+ *
+ * @param builder
+ * @param core_version
+ */
 void SetGetSpeakersReequestCoreVersion(
     voicevox_client_cpp::request::get::speakers::Builder* builder,
     int core_version);
