@@ -61,6 +61,10 @@ foreach(sample_name IN LISTS SAMPLE_NAMES)
   endif()
 endforeach()
 
+install(
+  DIRECTORY include/
+  DESTINATION include)
+
 if (TEST)
   enable_testing()
   add_subdirectory(test)
