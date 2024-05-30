@@ -31,7 +31,7 @@ public:
   /**
    * @brief Responses from the client (in String format)
    */
-  using OptionalString = std::optional<std::string>;
+  using OptionalBinary = std::optional<std::vector<unsigned char>>;
 
   /**
    * @brief User callback type
@@ -88,7 +88,7 @@ public:
    */
   pplx::task<void> Request(
       const web::http::http_request& req,
-      const CallbackType<OptionalString> callback_audio);
+      const CallbackType<OptionalBinary> callback_audio);
 
   /**
    * @brief An interface for sending requests to the server and receiving responses synchronously.

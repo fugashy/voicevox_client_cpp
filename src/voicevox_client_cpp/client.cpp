@@ -57,48 +57,43 @@ pplx::task<void> Client::Request(
 
 pplx::task<void> Client::Request(
     const web::http::http_request& req,
-    const CallbackType<OptionalString> callback)
+    const CallbackType<OptionalBinary> callback)
 {
   return pplx::create_task(
       [this, req, callback]()
       {
         return this->client_->request(req);
-      })
-    .then(
-        [callback](const web::http::http_response& res)
+      }).then([callback](const web::http::http_response& res)
         {
           if (res.status_code() != web::http::status_codes::OK)
           {
             std::cerr << "Unexpected status code" << std::endl;
-            callback(std::nullopt);
-            return;
+            return std::vector<unsigned char>();
           }
-
           const auto content_type = res.headers().content_type();
-          if (content_type == "audio/wav")
+          if (content_type != "audio/wav")
           {
-            const std::string output_path = "/tmp/output.wav";
-            auto file_buffer = Concurrency::streams::file_stream<uint8_t>::open_ostream(
-                U(output_path)).get();
-            res.body().read_to_end(file_buffer.streambuf())
-              .then(
-                  [file_buffer](size_t)
-                  {
-                    file_buffer.close()
-                      .then(
-                          []
-                          {
-                            std::cout << U("Audio file saved successfully.") << std::endl;
-                          }).wait();
-            }).wait();
-            callback(output_path);
+            std::cerr << "Unexpected content type: " << content_type << std::endl;
+            return std::vector<unsigned char>();
           }
-          else
+          auto vector_task = res.extract_vector();
+          vector_task.wait();
+          return vector_task.get();
+        }).then([callback](const std::vector<unsigned char>& data)
           {
-            std::cerr << "Unknown content type: " << content_type << std::endl;
-            callback(std::nullopt);
-          }
-        });
+            if (data.empty())
+            {
+              callback(std::nullopt);
+              return;
+            }
+
+            callback(data);
+            std::ofstream outfile("/tmp/output.wav", std::ios::binary);
+            outfile.write(
+                reinterpret_cast<const char*>(data.data()), data.size());
+            outfile.close();
+            return;
+          });
 }
 
 extern "C"
@@ -127,11 +122,11 @@ const char* RequestString(
     Client* client,
     request::Builder* req_builder)
 {
-  Client::OptionalString out = client->Request<Client::OptionalString>(req_builder->get());
+  Client::OptionalBinary out = client->Request<Client::OptionalBinary>(req_builder->get());
   if (out == std::nullopt) return NULL;
 
   char* cstr = new char[out.value().size() + 1];
-  std::strcpy(cstr, out.value().c_str());
+  std::copy(out.value().begin(), out.value().end(), cstr);
   return cstr;
 }
 
