@@ -6,14 +6,14 @@
 using ReqAudioQueryBuilder = voicevox_client_cpp::request::post::audio_query::Builder;
 using ReqSynthesisBuilder = voicevox_client_cpp::request::post::synthesis::Builder;
 
-void GetSynthesised(const voicevox_client_cpp::Client::OptionalString& string)
+void GetSynthesised(const voicevox_client_cpp::Client::OptionalBinary& audio_data)
 {
-  if (string == std::nullopt)
+  if (audio_data == std::nullopt)
   {
     std::cerr << "Null results causes by invalid query may be" << std::endl;
     return;
   }
-  std::cout << "saved audio file path: " << string.value() << std::endl;
+  std::cout << "audio file size: " << audio_data.value().size() << std::endl;
 }
 
 
@@ -65,10 +65,10 @@ int main(int argc, char** argv)
       .enable_interrogative_upspeak(false)
       .accent_phrases(json.value())
       .get();
-  const auto string = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
-    .Request<voicevox_client_cpp::Client::OptionalString>(req_synthesis);
+  const auto audio_data = voicevox_client_cpp::Client::GetInstance("http://localhost:50021")
+    .Request<voicevox_client_cpp::Client::OptionalBinary>(req_synthesis);
 
-  std::cout << "saved audio file path: " << string.value() << std::endl;
+  std::cout << "received audio size: " << audio_data.value().size() << std::endl;
 
   // Please refer to the file below for information on the interface for obtaining responses asynchronously.
   // - src/voicevox_client_cpp/sample/post_audio_query_then_synthesis.cpp
