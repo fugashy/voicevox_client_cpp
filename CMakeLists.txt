@@ -65,6 +65,11 @@ install(
   DIRECTORY include/
   DESTINATION include)
 
+install(EXPORT ${PROJECT_NAME}
+  FILE ${PROJECT_NAME}-config.cmake
+  DESTINATION share/cmake/${PROJECT_NAME}/
+  EXPORT_LINK_INTERFACE_LIBRARIES)
+
 if (TEST)
   enable_testing()
   add_subdirectory(test)
