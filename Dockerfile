@@ -7,8 +7,8 @@ run apt-get update \
     build-essential \
     g++ \
     libcpprest-dev \
-  && rm -rf /var/apt/list/*
-
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 workdir /tmp/pkg
 copy . /tmp/pkg/
