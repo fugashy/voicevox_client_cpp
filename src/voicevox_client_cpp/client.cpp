@@ -3,6 +3,7 @@
 #include <string>
 #include <ctime>
 #include <chrono>
+#include <iomanip>
 
 #include <cpprest/http_client.h>
 #include <cpprest/filestream.h>
