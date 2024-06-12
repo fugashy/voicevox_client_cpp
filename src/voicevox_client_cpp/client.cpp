@@ -59,8 +59,38 @@ pplx::task<void> Client::Request(
     const web::http::http_request& req,
     const CallbackType<OptionalBinary> callback)
 {
+  web::http::http_request rq = req;
+  auto rq_body = rq.extract_json().get();
+  std::string voice_text_full = "";
+  for (auto e : rq_body["accent_phrases"].as_array())
+  {
+    for (auto x : e["moras"].as_array())
+    {
+      try
+      {
+        voice_text_full += x["consonant"].as_string();
+      }
+      catch (const web::json::json_exception& e)
+      {
+        // nothing to do
+      }
+      voice_text_full += x["vowel"].as_string();
+    }
+  }
+  rq.set_body(rq_body);
+  std::string voice_text;
+  const size_t voice_length = 20;
+  if (voice_text_full.size() > voice_length)
+  {
+    voice_text = voice_text_full.substr(0, voice_length);
+  }
+  else
+  {
+    voice_text = voice_text_full;
+  }
+
   return pplx::create_task(
-      [this, req, callback]()
+      [this, req, callback, voice_text]()
       {
         return this->client_->request(req);
       }).then([callback](const web::http::http_response& res)
@@ -79,7 +109,7 @@ pplx::task<void> Client::Request(
           auto vector_task = res.extract_vector();
           vector_task.wait();
           return vector_task.get();
-        }).then([callback](const std::vector<unsigned char>& data)
+        }).then([callback, voice_text](const std::vector<unsigned char>& data)
           {
             if (data.empty())
             {
@@ -88,7 +118,8 @@ pplx::task<void> Client::Request(
             }
 
             callback(data);
-            std::ofstream outfile("/tmp/output.wav", std::ios::binary);
+            const std::string filename = "/tmp/" + voice_text + ".wav";
+            std::ofstream outfile(filename, std::ios::binary);
             outfile.write(
                 reinterpret_cast<const char*>(data.data()), data.size());
             outfile.close();
