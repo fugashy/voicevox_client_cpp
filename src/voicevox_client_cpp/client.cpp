@@ -7,6 +7,24 @@
 
 #include "voicevox_client_cpp/request.hpp"
 
+namespace
+{
+
+std::string GetCurrentDateTime()
+{
+  auto now = std::chrono::system_clock::now();
+  std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+  std::tm now_tm;
+  localtime_r(&now_time, &now_tm);
+
+  std::ostringstream oss;
+  oss << std::put_time(&now_tm, "%Y%m%d%H%M%S");
+  return oss.str();
+}
+
+}
+
 
 namespace voicevox_client_cpp
 {
@@ -118,7 +136,7 @@ pplx::task<void> Client::Request(
             }
 
             callback(data);
-            const std::string filename = "/tmp/" + voice_text + ".wav";
+            const std::string filename = "/tmp/" + GetCurrentDateTime() + "-" + voice_text + ".wav";
             std::ofstream outfile(filename, std::ios::binary);
             outfile.write(
                 reinterpret_cast<const char*>(data.data()), data.size());
