@@ -1,6 +1,8 @@
 #include "voicevox_client_cpp/client.hpp"
 
 #include <string>
+#include <ctime>
+#include <chrono>
 
 #include <cpprest/http_client.h>
 #include <cpprest/filestream.h>
