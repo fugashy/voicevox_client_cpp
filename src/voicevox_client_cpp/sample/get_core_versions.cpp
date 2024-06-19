@@ -1,5 +1,4 @@
-#include "voicevox_client_cpp/client.hpp"
-#include "voicevox_client_cpp/get.hpp"
+#include "voicevox_client_cpp/voicevox_client_cpp.hpp"
 
 #include <iostream>
 

@@ -57,7 +57,7 @@ pplx::task<void> Client::Request(
         {
           if (res.status_code() != web::http::status_codes::OK)
           {
-            std::cerr << "Unexpected status code" << std::endl;
+            std::cerr << "[voicevox] Unexpected status code" << std::endl;
             callback(std::nullopt);
             return;
           }
@@ -70,7 +70,7 @@ pplx::task<void> Client::Request(
           }
           else
           {
-            std::cerr << "Unknown content type: " << content_type << std::endl;
+            std::cerr << "[voicevox] Unknown content type: " << content_type << std::endl;
             callback(web::json::value());
           }
         });
@@ -118,13 +118,13 @@ pplx::task<void> Client::Request(
         {
           if (res.status_code() != web::http::status_codes::OK)
           {
-            std::cerr << "Unexpected status code" << std::endl;
+            std::cerr << "[voicevox] Unexpected status code" << std::endl;
             return std::vector<unsigned char>();
           }
           const auto content_type = res.headers().content_type();
           if (content_type != "audio/wav")
           {
-            std::cerr << "Unexpected content type: " << content_type << std::endl;
+            std::cerr << "[voicevox] Unexpected content type: " << content_type << std::endl;
             return std::vector<unsigned char>();
           }
           auto vector_task = res.extract_vector();

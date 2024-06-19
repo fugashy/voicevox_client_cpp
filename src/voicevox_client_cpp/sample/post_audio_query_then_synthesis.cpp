@@ -1,5 +1,4 @@
-#include "voicevox_client_cpp/client.hpp"
-#include "voicevox_client_cpp/post.hpp"
+#include "voicevox_client_cpp/voicevox_client_cpp.hpp"
 
 #include <iostream>
 
@@ -36,6 +35,7 @@ void RequestSynthesis(const voicevox_client_cpp::Client::OptionalJson& json)
 
   task.wait();
 }
+
 
 int main(int argc, char** argv)
 {
