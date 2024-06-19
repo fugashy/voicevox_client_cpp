@@ -8,5 +8,5 @@ digraph "src" {
   dir_c0642729247b66af8e1f7cbefae5b919 [shape=box label="voicevox_client_cpp" fillcolor="white" style="filled" color="red" URL="dir_c0642729247b66af8e1f7cbefae5b919.html"];
   }
   dir_d44c64559bbebec7f509842c48db8b23 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_d44c64559bbebec7f509842c48db8b23.html"];
-  dir_c0642729247b66af8e1f7cbefae5b919->dir_d44c64559bbebec7f509842c48db8b23 [headlabel="2", labeldistance=1.5 headhref="dir_000003_000000.html"];
+  dir_c0642729247b66af8e1f7cbefae5b919->dir_d44c64559bbebec7f509842c48db8b23 [headlabel="1", labeldistance=1.5 headhref="dir_000003_000000.html"];
 }

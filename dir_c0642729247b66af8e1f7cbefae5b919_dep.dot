@@ -11,5 +11,5 @@ digraph "voicevox_client_cpp" {
   }
   }
   dir_d44c64559bbebec7f509842c48db8b23 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_d44c64559bbebec7f509842c48db8b23.html"];
-  dir_664b77a43bc06fa39db15eb61f0df88d->dir_d44c64559bbebec7f509842c48db8b23 [headlabel="2", labeldistance=1.5 headhref="dir_000004_000000.html"];
+  dir_664b77a43bc06fa39db15eb61f0df88d->dir_d44c64559bbebec7f509842c48db8b23 [headlabel="1", labeldistance=1.5 headhref="dir_000004_000000.html"];
 }

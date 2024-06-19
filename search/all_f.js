@@ -8,5 +8,6 @@ var searchData=
   ['speakers_59',['speakers',['../namespacevoicevox__client__cpp_1_1request_1_1get_1_1speakers.html',1,'voicevox_client_cpp::request::get']]],
   ['synthesis_60',['synthesis',['../namespacevoicevox__client__cpp_1_1request_1_1post_1_1synthesis.html',1,'voicevox_client_cpp::request::post']]],
   ['version_61',['version',['../namespacevoicevox__client__cpp_1_1request_1_1get_1_1version.html',1,'voicevox_client_cpp::request::get']]],
-  ['voicevox_5fclient_5fcpp_62',['voicevox_client_cpp',['../index.html',1,'(Global Namespace)'],['../namespacevoicevox__client__cpp.html',1,'voicevox_client_cpp']]]
+  ['voicevox_5fclient_5fcpp_62',['voicevox_client_cpp',['../index.html',1,'(Global Namespace)'],['../namespacevoicevox__client__cpp.html',1,'voicevox_client_cpp']]],
+  ['voicevox_5fclient_5fcpp_2ehpp_63',['voicevox_client_cpp.hpp',['../voicevox__client__cpp_8hpp.html',1,'']]]
 ];
