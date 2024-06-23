@@ -93,3 +93,23 @@ int main(int argc, char** argv)
   return EXIT_SUCCESS;
 }
 ```
+
+# How to use samples
+
+```bash
+# Please run the voicevox server before execution of following commands.
+
+docker run \
+  -it \
+  --rm \
+  --net host \
+  --volume /tmp:/tmp:rw \
+  vvccpp:24.04 voicevox_client_cpp_sample_post_audio_query_then_synthesis
+
+> input: こんにちは
+> received audio size: 50732
+> audio file size: 50732
+
+# Please see /tmp then you can find wav files named like yyyymmddhhMMss-koNnichiwa.wav
+# 2 files are output because the sample requests 2 queries using sync method and async method.
+```
