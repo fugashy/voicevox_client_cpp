@@ -139,11 +139,11 @@ pplx::task<void> Client::Request(
             }
 
             callback(data);
-            const std::string filename = "/tmp/" + GetCurrentDateTime() + "-" + voice_text + ".wav";
-            std::ofstream outfile(filename, std::ios::binary);
-            outfile.write(
-                reinterpret_cast<const char*>(data.data()), data.size());
-            outfile.close();
+//          const std::string filename = "/tmp/" + GetCurrentDateTime() + "-" + voice_text + ".wav";
+//          std::ofstream outfile(filename, std::ios::binary);
+//          outfile.write(
+//              reinterpret_cast<const char*>(data.data()), data.size());
+//          outfile.close();
             return;
           });
 }
